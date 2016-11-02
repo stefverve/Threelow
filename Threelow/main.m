@@ -7,11 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Dice.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        GameController *threelow = [[GameController alloc]initWithDice:5];
+  //      while (YES) {
+            for (Dice *currentDie in threelow.diceArray) {
+                if (currentDie.isHeld == NO) {
+                    [currentDie randomize];
+                }
+  //              [currentDie printDie];
+            }
+        
+ //       }
+        [threelow printDice];
     }
     return 0;
 }
