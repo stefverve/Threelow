@@ -16,5 +16,7 @@
 - (instancetype) initWithDice: (int) numOfDice;
 
 - (void) printDice;
+- (void) roll;
+- (void) hold: (NSString *)input;
 
 @end

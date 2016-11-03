@@ -38,5 +38,27 @@
     NSLog(@"%@", output);
 }
 
+- (void) roll {
+    for (Dice *d in self.diceArray) {
+        if (!d.isHeld) {
+            [d randomize];
+        }
+    }
+    [self printDice];
+}
+
+- (void) hold: (NSString *)index {
+    NSMutableSet *diceToHold = [NSMutableSet new];
+    for (int i = 0; i < [index length]; i++) {
+        int getIntFromInput = [[[index substringFromIndex:i] substringToIndex:1] intValue];
+  //      int getIntFromInput = [index su]
+        if (getIntFromInput > 0 && getIntFromInput <= 5) {
+            [diceToHold addObject:[NSNumber numberWithInteger:getIntFromInput]];
+        }
+    }
+    for (NSNumber *i in diceToHold) {
+        [self.diceArray[i.intValue - 1] holdDie];
+    }
+}
 
 @end
