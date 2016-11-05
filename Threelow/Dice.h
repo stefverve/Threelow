@@ -17,5 +17,7 @@
 - (void) randomize;
 - (void) holdDie;
 - (NSString *) printDie;
+- (void) resetDie;
+- (int) scoreDie;
 
 @end

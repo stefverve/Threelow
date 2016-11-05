@@ -18,5 +18,8 @@
 - (void) printDice;
 - (void) roll;
 - (void) hold: (NSString *)input;
+- (void) reset;
+- (int) tally;
+- (void) score;
 
 @end

@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
         NSString *input = @"";
         GameController *threelow = [[GameController alloc]initWithDice:5];
         while ([input isNotEqualTo:@"quit"]) {
-            input = [[[InputCollector alloc]init] getString:(NSString *)@"\n\nWhat would you like to do?\n  roll - roll all unheld dice\n  hold - choose dice to hold\n  quit - quit"];
+            input = [[[InputCollector alloc]init] getString:(NSString *)@"\n\nWhat would you like to do?\n  roll - roll all unheld dice\n  hold - choose dice to hold\n  quit - quit\n  score- lock in your score\n  reset- reset all dice and play again"];
             if ([input isEqualToString:@"quit"]) {
                 return 0;
             } else if ([input isEqualToString:@"roll"]) {
@@ -24,6 +24,10 @@ int main(int argc, const char * argv[]) {
             } else if ([input isEqualToString:@"hold"]) {
                 input = [[[InputCollector alloc]init] getString:(NSString *)@"\nWhich dice would you like to change?"];
                 [threelow hold:(input)];
+            } else if ([input isEqualToString:@"score"]) {
+                [threelow score];
+            } else if ([input isEqualToString:@"reset"]) {
+                [threelow reset];
             }
         }
         [threelow printDice];

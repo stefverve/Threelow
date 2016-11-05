@@ -35,7 +35,7 @@
             [output appendString:@" "];
         }
     }
-    NSLog(@"%@", output);
+    NSLog(@"%@ :%d", output, [self tally]);
 }
 
 - (void) roll {
@@ -47,11 +47,10 @@
     [self printDice];
 }
 
-- (void) hold: (NSString *)index {
+- (void) hold: (NSString *)input {
     NSMutableSet *diceToHold = [NSMutableSet new];
-    for (int i = 0; i < [index length]; i++) {
-        int getIntFromInput = [[[index substringFromIndex:i] substringToIndex:1] intValue];
-  //      int getIntFromInput = [index su]
+    for (int i = 0; i < [input length]; i++) {
+        int getIntFromInput = [[[input substringFromIndex:i] substringToIndex:1] intValue];
         if (getIntFromInput > 0 && getIntFromInput <= 5) {
             [diceToHold addObject:[NSNumber numberWithInteger:getIntFromInput]];
         }
@@ -59,6 +58,25 @@
     for (NSNumber *i in diceToHold) {
         [self.diceArray[i.intValue - 1] holdDie];
     }
+}
+
+- (void) reset {
+    for (Dice *d in self.diceArray) {
+        [d resetDie];
+    }
+}
+
+- (int) tally {
+    int tally = 0;
+    for (Dice *d in self.diceArray) {
+        tally += [d scoreDie];
+    }
+    return tally;
+}
+
+- (void) score; {
+    NSLog(@"\n Your score is %d", [self tally]);
+    [self reset];
 }
 
 @end
